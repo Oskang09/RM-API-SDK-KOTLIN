@@ -51,6 +51,11 @@ val shadowJar = (tasks["shadowJar"] as ShadowJar).apply {
 val build = (tasks["build"] as Task).apply {
     arrayOf(sourcesJar, shadowJar).forEach { dependsOn(it) }
 }
+
+val test = (tasks["test"] as Task).apply {
+
+}
+
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
     jvmTarget = "1.8"
