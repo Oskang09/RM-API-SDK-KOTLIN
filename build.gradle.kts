@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
+    compileOnly(kotlin("stdlib-jdk8"))
     testImplementation(kotlin("test"))
 
     implementation("com.squareup.retrofit2:converter-jackson:2.9.0")
@@ -45,7 +45,7 @@ val sourcesJar by tasks.registering(Jar::class) {
 }
 
 val shadowJar = (tasks["shadowJar"] as ShadowJar).apply {
-    configurations = listOf(project.configurations.shadow.get())
+    exclude("kotlin/**")
 }
 
 val build = (tasks["build"] as Task).apply {

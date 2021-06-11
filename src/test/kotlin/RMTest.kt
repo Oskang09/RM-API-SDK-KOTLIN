@@ -1,7 +1,6 @@
 import com.github.revenuemonster.RevenueMonsterOpenAPI
 import com.github.revenuemonster.model.Environment
 import com.github.revenuemonster.model.request.*
-import com.github.revenuemonster.util.CallbackWrapper
 import com.github.revenuemonster.util.Random
 import okhttp3.logging.HttpLoggingInterceptor
 import org.junit.Before
