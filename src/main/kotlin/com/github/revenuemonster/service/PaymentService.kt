@@ -40,6 +40,6 @@ interface PaymentService {
     @GET("v3/payment/transaction/order/{orderId}")
     fun queryStatusByOrderID(@Path("orderId")orderId: String): Call<ApiResult<Transaction>>
 
-    @GET("v3/payment/transaction/order/{transactionId}")
+    @GET("v3/payment/transaction/{transactionId}")
     fun queryStatusByTransactionID(@Path("transactionId")transactionId: String): Call<ApiResult<Transaction>>
 }

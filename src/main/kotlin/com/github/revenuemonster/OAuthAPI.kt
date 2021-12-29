@@ -29,7 +29,7 @@ class OAuthAPI(private val openapi: RevenueMonsterOpenAPI) {
     @Throws(ApiErrorException::class)
     fun useAuthenticateAutoRefresh(accessToken: String? = null, refreshToken: String? = null, onRefresh: (Pair<OAuthResult?, Exception?>) -> Unit): Timer {
         if (accessToken == null || refreshToken == null) {
-            val body = openapi.getResponseFromCall(authenticate())
+            val body = openapi.ensureResponse(authenticate())
             openapi.accessToken = body.accessToken
             openapi.refreshToken = body.refreshToken
         } else {
@@ -40,7 +40,7 @@ class OAuthAPI(private val openapi: RevenueMonsterOpenAPI) {
         val repeatAt: Long = 1000 * 60 * 60
         return fixedRateTimer("refresh-token", false, repeatAt, repeatAt) {
             try {
-                val result = openapi.getResponseFromCall(openapi.oauthService.getToken(
+                val result = openapi.ensureResponse(openapi.oauthService.getToken(
                     openapi.base64EncodedClient,
                     OAuthRequest(
                         grantType = OAuthRequestGrantType.REFRESH_TOKEN,
